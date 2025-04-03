@@ -1,0 +1,16 @@
+inherit_from:
+  - "https://www.goodcop.style/base.yml"
+
+plugins:
+  - rubocop-rails
+  - rubocop-capybara
+
+AllCops:
+  TargetRubyVersion: 3.4
+  NewCops: enable
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested

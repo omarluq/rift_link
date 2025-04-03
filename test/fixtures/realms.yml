@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# == Schema Information
+#
+# Table name: realms
+#
+#  id          :bigint           not null, primary key
+#  banner      :string
+#  description :text
+#  icon        :string
+#  is_public   :boolean
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint           not null
+#
+# Indexes
+#
+#  index_realms_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+one:
+  name: MyString
+  description: MyText
+  icon: MyString
+  banner: MyString
+  owner: one
+  is_public: false
+
+two:
+  name: MyString
+  description: MyText
+  icon: MyString
+  banner: MyString
+  owner: two
+  is_public: false
