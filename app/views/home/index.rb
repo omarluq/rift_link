@@ -63,7 +63,7 @@ module Views
             title: 'Direct Messages',
             items: fetch_direct_messages.map { |thread|
               partner = thread.participants.reject { |p| p.user_id == Current.user.id }.first&.user
-              next unless partner && partner.profile
+              next unless partner&.profile
               {
                 text: partner.profile.username,
                 href: direct_message_thread_path(thread),

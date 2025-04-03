@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: friends
@@ -19,7 +21,7 @@
 #  fk_rails_...  (friend_id => friends.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class FriendTest < ActiveSupport::TestCase
   # test "the truth" do

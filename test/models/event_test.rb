@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -22,7 +24,7 @@
 #  fk_rails_...  (realm_id => realms.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
   # test "the truth" do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: direct_message_threads
@@ -6,7 +8,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require "test_helper"
+require 'test_helper'
 
 class DirectMessageThreadTest < ActiveSupport::TestCase
   # test "the truth" do

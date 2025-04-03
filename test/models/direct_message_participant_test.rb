@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: direct_message_participants
@@ -18,7 +20,7 @@
 #  fk_rails_...  (direct_message_thread_id => direct_message_threads.id)
 #  fk_rails_...  (user_id => users.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class DirectMessageParticipantTest < ActiveSupport::TestCase
   # test "the truth" do

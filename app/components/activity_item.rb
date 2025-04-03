@@ -50,7 +50,7 @@ module Components
     def render_timestamp
       p(class: 'text-xs text-white/50') do
         if activity.respond_to?(:created_at)
-          helpers.time_ago_in_words(activity.created_at) + ' ago'
+          "#{helpers.time_ago_in_words(activity.created_at)} ago"
         else
           'recently'
         end

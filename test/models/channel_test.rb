@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: channels
@@ -19,7 +21,7 @@
 #
 #  fk_rails_...  (realm_id => realms.id)
 #
-require "test_helper"
+require 'test_helper'
 
 class ChannelTest < ActiveSupport::TestCase
   # test "the truth" do
