@@ -10,7 +10,7 @@ export default class extends Controller {
     }
   }
 
-  toggle() {
+  toggle(e) {
     if (this.panelTarget.classList.contains('w-64')) {
       this.collapse()
     } else {

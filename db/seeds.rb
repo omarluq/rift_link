@@ -27,6 +27,7 @@ puts 'Creating users...'
 puts 'Assembling the Fellowship...'
 
 users = [
+  { username: 'luffy', email: 'luffy@example.com', password: 'password123456!' },
   { username: 'Aragorn', email: 'strider@gondor.com', password: 'IsildursHeir1!!' },
   { username: 'Frodo', email: 'ringbearer@shire.com', password: 'SecretlyMine!!' },
   { username: 'Gandalf', email: 'greytowht@istari.com', password: 'YouShallNotPass!!' },

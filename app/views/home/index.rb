@@ -4,6 +4,7 @@ module Views
   module Home
     class Index < Views::Base
       prop :activities, ActiveRecord::Relation(Activity), default: -> { nil }, reader: :private
+      prop :realms, _Nilable(ActiveRecord::Relation(Realm)), default: -> { nil }, reader: :private
 
       def view_template
         div(class: 'container mx-auto p-6') do

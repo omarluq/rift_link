@@ -30,7 +30,7 @@ module Components
         render_control_section
 
         # Collapse button
-        render_collapse_button
+        # render_collapse_button
       end
     end
 
@@ -51,7 +51,7 @@ module Components
     end
 
     def render_collapse_button
-      button(class: 'absolute top-1/2 -right-3 bg-cyan-500 rounded-full p-1 shadow-lg border border-cyan-400', data: { action: 'click->sidenav#toggle' }) do
+      button(class: 'absolute top-1/2 -right-3 bg-cyan-500 rounded-full p-1 shadow-lg border border-cyan-400 transform', data: { action: 'click->sidenav#toggle' }) do
         Lucide::ChevronLeft class: 'h-4 w-4 text-white'
       end
     end
