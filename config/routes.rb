@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   post 'sign_in', to: 'sessions#create'
   get  'sign_up', to: 'registrations#new'
   post 'sign_up', to: 'registrations#create'
-  get 'sidenav', to: 'home#sidenav'
   resources :sessions, only: [:index, :show, :destroy]
   resource  :password, only: [:edit, :update]
   namespace :identity do
@@ -14,6 +13,11 @@ Rails.application.routes.draw do
     resource :password_reset,     only: [:new, :edit, :create, :update]
   end
   root 'home#index'
+  # config/routes.rb - add to the existing routes
+  get 'settings', to: 'home#settings', as: 'settings'
+  get 'sidenav', to: 'home#sidenav'
+  patch 'update_profile', to: 'home#update_profile', as: 'update_profile'
+  patch 'update_account', to: 'home#update_account', as: 'update_account'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
