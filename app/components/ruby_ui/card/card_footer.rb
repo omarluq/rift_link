@@ -10,7 +10,7 @@ module RubyUI
 
     def default_attrs
       {
-        class: 'items-center p-6 pt-0',
+        class: 'flex items-center justify-between p-6 pt-0 border-t border-white/10 mt-6',
       }
     end
   end

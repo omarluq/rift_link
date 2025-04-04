@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RubyUI
-  class Card < Base
+  class TabsList < Base
     def view_template(&)
       div(**attrs, &)
     end
@@ -10,7 +10,7 @@ module RubyUI
 
     def default_attrs
       {
-        class: 'rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm shadow-lg overflow-hidden',
+        class: "inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground"
       }
     end
   end

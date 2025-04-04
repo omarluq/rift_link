@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Views
-  module Home
-    class Settings < Views::Base
+  module Settings
+    class Index < Views::Base
       prop :user, User, reader: :private
       prop :user_profile, UserProfile, reader: :private
-      prop :active_tab, String, default: -> { 'profile' }, reader: :private
+      prop :active_tab, String, reader: :private
 
       def view_template
         div(class: 'container mx-auto py-8 px-4 max-w-5xl') do
@@ -27,7 +27,7 @@ module Views
       private
 
       def render_rubyui_tabs
-        RubyUI::Tabs(default_value: active_tab) do
+        RubyUI::Tabs(default: active_tab) do
           # Tab List (Navigation)
           RubyUI::TabsList(class: 'w-full p-0 bg-zinc-800/60 border-b border-white/10') do
             tabs.each do |tab|
@@ -44,18 +44,20 @@ module Views
           # Tab Content
           tabs.each do |tab|
             RubyUI::TabsContent(value: tab[:id], class: 'p-6') do
-              case tab[:id]
-              when 'profile'
-                Components::ProfileSettings(user_profile:)
-              when 'account'
-                Components::AccountSettings(user:)
-              when 'sessions'
-                Components::SessionSettings(user:)
-              when 'danger'
-                Components::DangerZoneSettings(user:)
+              # Turbo Frame to lazy load the tab content
+              turbo_frame_tag "settings-#{tab[:id]}-content",
+                src: "/settings/#{tab[:id]}",
+                loading: :lazy do
+                render_loading_state
               end
             end
           end
+        end
+      end
+
+      def render_loading_state
+        div(class: 'flex justify-center items-center py-12') do
+          div(class: 'animate-spin h-8 w-8 border-4 border-cyan-500 rounded-full border-t-transparent')
         end
       end
 
