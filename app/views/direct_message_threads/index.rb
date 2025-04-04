@@ -3,10 +3,13 @@
 module Views
   module DirectMessageThreads
     class Index < Views::Base
+      prop :threads, ActiveRecord::Relation(DirectMessageThread), reader: :private
+      
       def view_template
-        h1 { 'DirectMessageThreads::Index' }
-        p { 'Find me in ' }
+        div(class: 'container mx-auto p-6') do
+          h1(class: 'text-2xl font-semibold mb-6') { 'Direct Messages' }
+          Components::ThreadList(threads: threads)
+        end
       end
     end
   end
-end

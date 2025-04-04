@@ -57,7 +57,7 @@ module Views
     def sidenav
       return unless Current.user
 
-      turbo_frame_tag('sidenav', load: :lazy, src: sidenav_path)
+      turbo_frame_tag('sidenav', load: :lazy, src: sidenav_path, data: { turbo_permanent: true })
     end
 
     # Data fetching methods - now fetching from the database
