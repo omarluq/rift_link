@@ -49,7 +49,7 @@ module Views
         if user.errors.any?
           div(class: 'mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-md backdrop-blur-sm') do
             h2(class: 'text-red-300 text-sm font-medium flex items-center mb-2') do
-              render Lucide::AlertTriangle class: 'h-4 w-4 mr-2 text-red-400'
+              render Lucide::TriangleAlert class: 'h-4 w-4 mr-2 text-red-400'
               span do
                 pluralize(user.errors.count, 'error')
                 ' prohibited sign up:'
