@@ -8,12 +8,12 @@ module Components
 
     def view_template(&block)
       if form_method
-        button_to href, method: form_method, class: 'w-full group flex items-center px-4 py-2 text-sm font-medium rounded-md text-white hover:bg-white/10 transition-colors' do
+        button_to href, method: form_method, data: { turbo_frame: '_top' }, class: 'w-full group flex items-center px-4 py-2 text-sm font-medium rounded-md text-white hover:bg-white/10 transition-colors' do
           yield if block_given?
           span { text }
         end
       else
-        link_to href, class: 'group flex items-center px-4 py-2 text-sm font-medium rounded-md text-white hover:bg-white/10 transition-colors' do
+        link_to href, data: { turbo_frame: '_top' }, class: 'group flex items-center px-4 py-2 text-sm font-medium rounded-md text-white hover:bg-white/10 transition-colors' do
           yield if block_given?
           span { text }
         end

@@ -37,7 +37,9 @@ module Components
     private
 
     def render_profile_section
-      Components::ProfileBadge(user:)
+      link_to(root_path, data: { turbo_frame: '_top' }) do
+        Components::ProfileBadge(user:)
+      end
     end
 
     def render_control_section
