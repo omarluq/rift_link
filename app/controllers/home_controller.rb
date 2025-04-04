@@ -2,17 +2,67 @@
 
 class HomeController < ApplicationController
   def index
-    render Views::Home::Index.new(activities:, realms:)
+    render Views::Home::Index.new(activities:, realms:, flash:)
   end
 
   def show
+    render Views::Home::Show.new(flash:)
   end
 
   def sidenav
-    render Views::Home::Sidenav.new(realms:, pinned_realms:, my_realms:, direct_messages:,)
+    render Views::Home::Sidenav.new(realms:, pinned_realms:, my_realms:, direct_messages:)
   end
 
-  private
+  def settings
+    @user_profile = Current.user.profile || UserProfile.new(user: Current.user)
+    render Views::Home::Settings.new(user: Current.user, user_profile: @user_profile, flash:)
+  end
+
+  def update_profile
+    @user_profile = Current.user.profile || UserProfile.new(user: Current.user)
+
+    if @user_profile.update(profile_params)
+      redirect_to settings_path, notice: 'Profile updated successfully'
+    else
+      render Views::Home::Settings.new(user: Current.user, user_profile: @user_profile, flash:), status: :unprocessable_entity
+    end
+  end
+
+  def update_account
+    @user = Current.user
+
+    if @user.authenticate(account_params[:password_challenge])
+      if account_params[:email].present? && @user.email != account_params[:email]
+        @user.email = account_params[:email]
+        @user.verified = false
+        send_email_verification if @user.save
+        redirect_to settings_path, notice: 'Email updated successfully. Please verify your new email address.'
+      elsif account_params[:password].present?
+        @user.password = account_params[:password]
+        @user.password_confirmation = account_params[:password_confirmation]
+        @user.save ? redirect_to(settings_path, notice: 'Password updated successfully') : render(Views::Home::Settings.new(user: @user, user_profile: @user.profile, flash:), status: :unprocessable_entity)
+      else
+        redirect_to settings_path, notice: 'No changes made to your account'
+      end
+    else
+      @user.errors.add(:password_challenge, 'is incorrect')
+      render Views::Home::Settings.new(user: @user, user_profile: @user.profile, flash:), status: :unprocessable_entity
+    end
+  end
+
+private
+
+  def profile_params
+    params.require(:user_profile).permit(:username, :display_name, :bio, :gaming_status)
+  end
+
+  def account_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :password_challenge)
+  end
+
+  def send_email_verification
+    UserMailer.with(user: @user).email_verification.deliver_later
+  end
 
   def realms
     @realms ||= Realm.left_joins(:memberships)

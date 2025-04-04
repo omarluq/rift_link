@@ -43,17 +43,27 @@ module Views
             },
           },
           {
-            title: 'Direct Messages',
-            items: direct_messages.map { |thread|
-              partner = thread.participants.reject { |p| p.user_id == Current.user.id }.first&.user
-              next unless partner&.profile
+            title: 'Messages',
+            items: [
+              # Link to all direct messages
               {
-                text: partner.profile.username,
-                href: direct_message_thread_path(thread),
-                icon_component: Lucide::MessageSquare,
+                text: 'All Messages',
+                href: direct_message_threads_path,
+                icon_component: Lucide::MessageCircleMore,
                 form_method: nil,
-              }
-            }.compact,
+              },
+              # Then individual message threads
+              *direct_messages.map { |thread|
+                partner = thread.other_participant(Current.user)
+                next unless partner&.profile
+                {
+                  text: partner.profile.username,
+                  href: direct_message_thread_path(thread),
+                  icon_component: Lucide::MessageCircle,
+                  form_method: nil,
+                }
+              }.compact,
+            ],
           },
           {
             title: 'Explore',

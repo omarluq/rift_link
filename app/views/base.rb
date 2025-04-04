@@ -13,6 +13,8 @@ module Views
     register_output_helper :csp_meta_tags
     register_output_helper :action_cable_meta_tag
 
+    prop :flash, _Nilable(ActionDispatch::Flash::FlashHash), default: -> { nil }, reader: :private
+
     def around_template
       doctype
       html(**html_opt) do
@@ -33,7 +35,7 @@ module Views
         end
         body(class: 'bg-gradient-to-br from-zinc-900 via-indigo-950 to-purple-950 min-h-screen text-white') do
           whitespace
-          # render_header
+          render_flash_messages
           # Main content from views
           div(class: 'flex h-screen overflow-hidden') do
             # Side Navigation using Component
@@ -58,6 +60,14 @@ module Views
       return unless Current.user
 
       turbo_frame_tag('sidenav', load: :lazy, src: sidenav_path, data: { turbo_permanent: true })
+    end
+
+    def render_flash_messages
+      return if flash.nil?
+
+      flash.each do |type, message|
+        Components::FlashNotification(type: type.to_sym, message:)
+      end
     end
 
     # Data fetching methods - now fetching from the database

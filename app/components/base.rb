@@ -22,6 +22,8 @@ module Components
     include Phlex::Rails::Helpers::TurboStreamFrom
     include Phlex::Rails::Helpers::TurboFrameTag
     include Phlex::Rails::Helpers::ActionCableMetaTag
+    include Phlex::Rails::Helpers::OptionsForSelect
+    include Phlex::Rails::Helpers::TimeAgoInWords
     include PhlexIcons
     extend Literal::Properties
 
