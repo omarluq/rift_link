@@ -19,7 +19,7 @@ class HomeController < ApplicationController
       .select('realms.*, COUNT(memberships.id) as member_count')
       .where(is_public: true)
       .group('realms.id')
-      .order('member_count DESC')
+      .order(Arel.sql('COUNT(memberships.id) DESC'))
       .limit(6)
   end
 
@@ -27,28 +27,35 @@ class HomeController < ApplicationController
     @pinned_realms ||= Current.user.realms
       .joins(:memberships)
       .where(memberships: { user_id: Current.user.id })
-      .order('memberships.joined_at ASC')
+      .select('realms.*, memberships.joined_at')
+      .order(Arel.sql('memberships.joined_at ASC'))
       .limit(2)
   end
 
   def my_realms
     @my_realms ||= Current.user.realms
-      .where.not(id: pinned_realms.pluck(:id))
+      .where.not(id: pinned_realms.map(&:id))
       .limit(5)
   end
 
   def direct_messages
-    @direct_messages ||= DirectMessageThread.joins(:participants)
+    @direct_messages ||= DirectMessageThread
+      .joins(:participants)
       .where(direct_message_participants: { user_id: Current.user.id })
-      .joins('LEFT JOIN messages ON messages.messageable_type = \'DirectMessageThread\' AND messages.messageable_id = direct_message_threads.id')
-      .select('direct_message_threads.*, MAX(messages.created_at) as last_message_at')
-      .group('direct_message_threads.id')
-      .order('last_message_at DESC NULLS LAST')
+      .joins("LEFT JOIN (
+      SELECT messageable_id, MAX(created_at) as last_message_at
+      FROM messages
+      WHERE messageable_type = 'DirectMessageThread'
+      GROUP BY messageable_id
+    ) latest_messages ON latest_messages.messageable_id = direct_message_threads.id")
+      .select('direct_message_threads.*, COALESCE(latest_messages.last_message_at, direct_message_threads.created_at) as sort_date')
+      .order(Arel.sql('sort_date DESC'))
       .limit(3)
   end
 
   def activities
-    @activities ||= Activity.includes(:user)
+    @activities ||= Activity
+      .includes(:user)
       .order(created_at: :desc)
       .limit(5)
   end

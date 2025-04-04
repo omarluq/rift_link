@@ -39,54 +39,6 @@
 
 ---
 
-## 🗄 Architecture Overview
-
-```mermaid
-graph TD
-  subgraph Frontend
-    UI["Phlex Components"]
-    Tailwind["TailwindCSS + Stimulus"]
-  end
-
-  subgraph AppServer["Application Server (Rails 8)"]
-    Routes["Rails Routes"]
-    Controllers
-    Views
-    Models
-    Mailer
-    Jobs
-  end
-
-  subgraph DB["PostgreSQL Database"]
-    UsersTable(("Users"))
-    RealmsTable(("Realms"))
-    MessagesTable(("Messages"))
-    EventsTable(("Events"))
-  end
-
-  subgraph Future["Future: Federated Nodes"]
-    Node1["RiftLink Node A"]
-    Node2["RiftLink Node B"]
-    Federation["ActivityPub/Federation Layer"]
-  end
-
-  UI --> Routes
-  Routes --> Controllers
-  Controllers --> Views
-  Controllers --> Models
-  Models --> DB
-  Controllers --> Mailer
-  Controllers --> Jobs
-  Jobs --> Models
-  Mailer --> Email[("SMTP")]
-
-  AppServer --> Federation
-  Federation --> Node1
-  Federation --> Node2
-```
-
----
-
 ## 🥪 Development Setup
 
 ```bash
