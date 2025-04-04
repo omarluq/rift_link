@@ -3,7 +3,7 @@ import consumer from "../channels/consumer"
 
 export default class extends Controller {
   static targets = ["input", "messages", "typingIndicator"]
-  static values = { threadId: String }
+  static values = { threadId: Number }
 
   connect() {
     if (!this.hasThreadIdValue) return
