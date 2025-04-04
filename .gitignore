@@ -46,3 +46,7 @@ yarn-debug.log*
 .DS_Store
 .idea
 *~
+
+/db/*.sqlite3
+/db/*.sqlite3-*
+/db/*.sqlite3-journal
