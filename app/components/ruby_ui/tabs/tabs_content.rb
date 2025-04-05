@@ -17,9 +17,9 @@ module RubyUI
       {
         data: {
           ruby_ui__tabs_target: :content,
-          value: @value
+          value: @value,
         },
-        class: "mt-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hidden"
+        class: 'mt-4 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hidden',
       }
     end
   end

@@ -17,6 +17,9 @@ importers:
       '@rails/activestorage':
         specifier: ^8.0.200
         version: 8.0.200
+      blurhash:
+        specifier: ^2.0.5
+        version: 2.0.5
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.0.14)
@@ -411,6 +414,9 @@ packages:
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
+
+  blurhash@2.0.5:
+    resolution: {integrity: sha512-cRygWd7kGBQO3VEhPiTgq4Wc43ctsM+o46urrmPOiuAe+07fzlSB9OJVdpgDL0jPqXUVQ9ht7aq7kxOeJHRK+w==}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -946,6 +952,8 @@ snapshots:
       picocolors: 1.1.1
       postcss: 8.5.3
       postcss-value-parser: 4.2.0
+
+  blurhash@2.0.5: {}
 
   braces@3.0.3:
     dependencies:

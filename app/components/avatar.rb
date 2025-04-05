@@ -9,8 +9,11 @@ module Components
     def view_template
       div(class: "#{size_class} rounded-full #{bg_class} flex items-center justify-center overflow-hidden") do
         if user.avatar.attached?
-          # Use ActiveStorage's image_tag helper
-          image_tag url_for(user.avatar), alt: "#{display_name}'s avatar", class: 'w-full h-full object-cover'
+          Components::BlurhashImage(
+            source: user.avatar,
+            alt: "#{display_name}'s avatar",
+            class: 'w-full h-full object-cover'
+          )
         else
           span(class: "text-white #{font_class}") { initials }
         end
@@ -27,6 +30,8 @@ module Components
         'w-10 h-10'
       when :large
         'w-12 h-12'
+      when :xxlarge
+        'w-20 h-20'
       else
         'w-10 h-10'
       end
