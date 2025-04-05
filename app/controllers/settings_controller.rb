@@ -29,8 +29,11 @@ class SettingsController < ApplicationController
   end
 
   def update_profile
-    if @user_profile.update(profile_params)
-      flash.notice = 'Profile updated successfully'
+    if profile_params[:avatar].present?
+      @user_profile.user.avatar.attach(profile_params[:avatar])
+    end
+
+    if @user_profile.update(profile_params.except(:avatar))
       render Components::ProfileSettings.new(user_profile: @user_profile)
     else
       render Components::ProfileSettings.new(user_profile: @user_profile), status: :unprocessable_entity
@@ -68,7 +71,7 @@ class SettingsController < ApplicationController
   end
 
   def profile_params
-    params.require(:user_profile).permit(:username, :display_name, :bio, :gaming_status)
+    params.require(:user_profile).permit(:username, :display_name, :bio, :gaming_status, :avatar)
   end
 
   def account_params

@@ -4,7 +4,7 @@
 #
 # Table name: memberships
 #
-#  id                  :bigint           not null, primary key
+#  id                  :integer          not null, primary key
 #  joined_at           :datetime
 #  member_role         :string
 #  membershipable_type :string           not null
@@ -21,7 +21,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 require 'test_helper'
 

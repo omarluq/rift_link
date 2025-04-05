@@ -4,7 +4,7 @@
 #
 # Table name: realms
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  banner      :string
 #  description :text
 #  icon        :string
@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 require 'test_helper'
 

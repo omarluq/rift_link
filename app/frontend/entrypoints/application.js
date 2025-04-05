@@ -18,11 +18,11 @@ console.log(
 
 // Example: Load Rails libraries in Vite.
 //
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
+import * as Turbo from '@hotwired/turbo'
+Turbo.start()
 //
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
+import * as ActiveStorage from "@rails/activestorage"
+ActiveStorage.start()
 //
 // // Import all channels.
 // const channels = import.meta.globEager('./**/*_channel.js')

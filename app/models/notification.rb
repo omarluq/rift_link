@@ -4,14 +4,14 @@
 #
 # Table name: notifications
 #
-#  id                :bigint           not null, primary key
-#  user_id           :bigint           not null
-#  source_type       :string
-#  source_id         :string
+#  id                :integer          not null, primary key
 #  notification_type :string
 #  read              :boolean
+#  source_type       :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  source_id         :string
+#  user_id           :bigint           not null
 #
 # Indexes
 #
@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 class Notification < ApplicationRecord
   belongs_to :user

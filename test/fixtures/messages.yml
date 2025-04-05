@@ -4,7 +4,7 @@
 #
 # Table name: messages
 #
-#  id               :bigint           not null, primary key
+#  id               :integer          not null, primary key
 #  attachment_url   :string
 #  content          :text
 #  is_pinned        :boolean
@@ -21,7 +21,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 one:
   user: one

@@ -14,6 +14,9 @@ importers:
       '@hotwired/turbo-rails':
         specifier: ^8.0.12
         version: 8.0.13
+      '@rails/activestorage':
+        specifier: ^8.0.200
+        version: 8.0.200
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.0.14)
@@ -222,6 +225,9 @@ packages:
 
   '@rails/actioncable@7.2.201':
     resolution: {integrity: sha512-wsTdWoZ5EfG5k3t7ORdyQF0ZmDEgN4aVPCanHAiNEwCROqibSZMXXmCbH7IDJUVri4FOeAVwwbPINI7HVHPKBw==}
+
+  '@rails/activestorage@8.0.200':
+    resolution: {integrity: sha512-V7GnZXsAMPDWVOBv4/XpHwj5sOw5bWjidWCuUbK3Zx1xt2pOfFaeJDUG7fEWb1MwP4aW1oVVlGkJBdXVyvru0A==}
 
   '@rollup/rollup-android-arm-eabi@4.36.0':
     resolution: {integrity: sha512-jgrXjjcEwN6XpZXL0HUeOVGfjXhPyxAbbhD0BlXUB+abTOpbPiN5Wb3kOT7yb+uEtATNYF5x5gIfwutmuBA26w==}
@@ -615,6 +621,9 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  spark-md5@3.0.2:
+    resolution: {integrity: sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==}
+
   stimulus-vite-helpers@3.1.0:
     resolution: {integrity: sha512-qy9vnNnu6e/1PArEndp456BuSKLQkBgc+vX2pedOHT0N4GSLQY0l5fuQ4ft56xZ8xSWqrfuYSR+GXXIPtoESww==}
 
@@ -803,6 +812,10 @@ snapshots:
       fastq: 1.19.1
 
   '@rails/actioncable@7.2.201': {}
+
+  '@rails/activestorage@8.0.200':
+    dependencies:
+      spark-md5: 3.0.2
 
   '@rollup/rollup-android-arm-eabi@4.36.0':
     optional: true
@@ -1137,6 +1150,8 @@ snapshots:
       queue-microtask: 1.2.3
 
   source-map-js@1.2.1: {}
+
+  spark-md5@3.0.2: {}
 
   stimulus-vite-helpers@3.1.0: {}
 

@@ -24,6 +24,7 @@ module Components
     include Phlex::Rails::Helpers::ActionCableMetaTag
     include Phlex::Rails::Helpers::OptionsForSelect
     include Phlex::Rails::Helpers::TimeAgoInWords
+    include Phlex::Rails::Helpers::ImageTag
     include PhlexIcons
     extend Literal::Properties
 

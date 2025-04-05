@@ -4,24 +4,24 @@
 #
 # Table name: memberships
 #
-#  id                :bigint           not null, primary key
-#  user_id           :bigint           not null
-#  member_role       :string
-#  nickname          :string
+#  id                  :integer          not null, primary key
+#  joined_at           :datetime
+#  member_role         :string
 #  membershipable_type :string           not null
-#  membershipable_id :bigint           not null
-#  joined_at         :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  nickname            :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  membershipable_id   :bigint           not null
+#  user_id             :bigint           not null
 #
 # Indexes
 #
 #  index_memberships_on_membershipable  (membershipable_type,membershipable_id)
-#  index_memberships_on_user_id        (user_id)
+#  index_memberships_on_user_id         (user_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 class Membership < ApplicationRecord
   belongs_to :user

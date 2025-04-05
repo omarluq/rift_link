@@ -4,15 +4,15 @@
 #
 # Table name: user_profiles
 #
-#  id           :bigint           not null, primary key
-#  user_id      :bigint           not null
-#  username     :string
-#  display_name :string
-#  avatar       :string
-#  bio          :text
+#  id            :integer          not null, primary key
+#  avatar        :string
+#  bio           :text
+#  display_name  :string
 #  gaming_status :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  username      :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :bigint           not null
 #
 # Indexes
 #
@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 class UserProfile < ApplicationRecord
   belongs_to :user
@@ -28,9 +28,5 @@ class UserProfile < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :gaming_status, inclusion: { in: ['online', 'away', 'busy', 'offline'] }, allow_nil: true
 
-  def avatar_url
-    # In a real app, this would be connected to ActiveStorage or similar
-    # For now, return avatar field or nil to use the initials fallback
-    avatar
-  end
+  has_one_attached :avatar
 end

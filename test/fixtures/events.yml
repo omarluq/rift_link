@@ -4,7 +4,7 @@
 #
 # Table name: events
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  description :text
 #  end_time    :datetime
 #  start_time  :datetime
@@ -21,8 +21,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (realm_id => realms.id)
-#  fk_rails_...  (user_id => users.id)
+#  realm_id  (realm_id => realms.id)
+#  user_id   (user_id => users.id)
 #
 one:
   realm: one

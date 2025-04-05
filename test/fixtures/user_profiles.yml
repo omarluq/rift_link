@@ -4,7 +4,7 @@
 #
 # Table name: user_profiles
 #
-#  id            :bigint           not null, primary key
+#  id            :integer          not null, primary key
 #  avatar        :string
 #  bio           :text
 #  display_name  :string
@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 one:
   user: one

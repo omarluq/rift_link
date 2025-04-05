@@ -4,7 +4,7 @@
 #
 # Table name: event_participants
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -18,8 +18,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (event_id => events.id)
-#  fk_rails_...  (user_id => users.id)
+#  event_id  (event_id => events.id)
+#  user_id   (user_id => users.id)
 #
 require 'test_helper'
 

@@ -101,29 +101,46 @@ module Components
           RubyUI::CardTitle() { 'Avatar' }
           RubyUI::CardDescription() { 'Your profile image across RiftLink' }
         end
-
         RubyUI::CardContent() do
-          div(class: 'flex items-center gap-4 mt-4') do
-            div(class: 'relative h-20 w-20 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center overflow-hidden border-2 border-white/10') do
-              if user_profile.avatar.present?
-                img(src: user_profile.avatar_url, alt: "#{user_profile.username}'s avatar", class: 'w-full h-full object-cover')
+          div(class: 'flex items-center gap-4 mt-4', data: { controller: 'avatar-preview' }) do
+            div(class: 'relative h-20 w-20 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center overflow-hidden border-2 border-white/10', data: { 'avatar-preview-target': 'container' }) do
+              if user_profile.user.avatar.attached?
+                image_tag url_for(user_profile.user.avatar),
+                  alt: "#{user_profile.username}'s avatar",
+                  class: 'w-full h-full object-cover',
+                  data: { 'avatar-preview-target': 'preview' }
               else
                 span(class: 'text-white text-xl font-bold') { user_profile.username ? user_profile.username[0..1].upcase : '??' }
               end
-
-              # Overlay for hover effect
-              div(class: 'absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer') do
-                Lucide::Camera class: 'h-6 w-6 text-white'
-              end
             end
 
-            div do
-              RubyUI::Button(variant: :secondary, size: :sm) do
-                Lucide::Upload class: 'h-4 w-4 mr-2'
-                'Change Avatar'
-              end
-              RubyUI::Text(as: 'p', size: '1', class: 'mt-1 text-white/50') do
-                'JPG, GIF or PNG. Max size 2MB.'
+            div(class: 'flex-1') do
+              div(class: 'relative') do
+                form.file_field :avatar,
+                  class: 'absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10',
+                  accept: 'image/jpeg,image/png,image/gif',
+                  direct_upload: true,
+                  data: {
+                    action: 'change->avatar-preview#updatePreview',
+                    direct_upload_url: rails_direct_uploads_path,
+                  }
+
+                div(class: 'flex flex-col') do
+                  div(class: 'flex items-center') do
+                    RubyUI::Button(variant: :secondary, size: :sm, type: :button) do
+                      Lucide::Upload class: 'h-4 w-4 mr-2'
+                      span { 'Choose File' }
+                    end
+
+                    span(class: 'ml-2 text-sm text-white/70', data: { 'avatar-preview-target': 'filename' }) do
+                      user_profile.user.avatar.attached? ? 'Current avatar selected' : 'No file selected'
+                    end
+                  end
+
+                  RubyUI::Text(as: 'p', size: '1', class: 'mt-1 text-white/50') do
+                    'JPG, GIF or PNG. Max size 2MB.'
+                  end
+                end
               end
             end
           end
