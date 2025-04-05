@@ -45,17 +45,15 @@ class SettingsController < ApplicationController
         @user.email = account_params[:email]
         @user.verified = false
         send_email_verification if @user.save
-        redirect_to settings_path(tab: 'account'), notice: 'Email updated successfully. Please verify your new email address.'
+        render Components::AccountSettings.new(user: @user)
       elsif account_params[:password].present?
         @user.password = account_params[:password]
         @user.password_confirmation = account_params[:password_confirmation]
         if @user.save
-          redirect_to settings_path(tab: 'account'), notice: 'Password updated successfully'
+          render Components::AccountSettings.new(user: @user)
         else
           render Components::AccountSettings.new(user: @user), status: :unprocessable_entity
         end
-      else
-        redirect_to settings_path(tab: 'account'), notice: 'No changes made to your account'
       end
     else
       @user.errors.add(:password_challenge, 'is incorrect')

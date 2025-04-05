@@ -13,7 +13,7 @@ module Identity
 
     def create
       send_email_verification
-      redirect_to root_path, notice: 'We sent a verification email to your email address'
+      redirect_to settings_account_path
     end
 
   private
