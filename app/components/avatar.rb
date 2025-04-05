@@ -2,14 +2,15 @@
 
 module Components
   class Avatar < Components::Base
-    prop :user, Object, reader: :private
+    prop :user, User, reader: :private
     prop :size, Symbol, default: :medium, reader: :private
     prop :bg_class, String, default: -> { 'bg-gradient-to-br from-indigo-500 to-purple-600' }, reader: :private
 
     def view_template
       div(class: "#{size_class} rounded-full #{bg_class} flex items-center justify-center overflow-hidden") do
-        if user.respond_to?(:avatar_url) && user.avatar_url.present?
-          img(src: user.avatar_url, alt: "#{user.username}'s avatar", class: 'w-full h-full object-cover')
+        if user.avatar.attached?
+          # Use ActiveStorage's image_tag helper
+          image_tag url_for(user.avatar), alt: "#{display_name}'s avatar", class: 'w-full h-full object-cover'
         else
           span(class: "text-white #{font_class}") { initials }
         end
@@ -45,12 +46,22 @@ module Components
     end
 
     def initials
-      if user.respond_to?(:username)
+      if user.respond_to?(:username) && user.username.present?
         user.username[0..1].upcase
-      elsif user.respond_to?(:name)
+      elsif user.respond_to?(:name) && user.name.present?
         user.name[0..1].upcase
       else
         '??'
+      end
+    end
+
+    def display_name
+      if user.respond_to?(:username) && user.username.present?
+        user.username
+      elsif user.respond_to?(:name) && user.name.present?
+        user.name
+      else
+        'User'
       end
     end
   end

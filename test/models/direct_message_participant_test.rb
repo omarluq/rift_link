@@ -4,7 +4,7 @@
 #
 # Table name: direct_message_participants
 #
-#  id                       :bigint           not null, primary key
+#  id                       :integer          not null, primary key
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  direct_message_thread_id :bigint           not null
@@ -17,8 +17,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (direct_message_thread_id => direct_message_threads.id)
-#  fk_rails_...  (user_id => users.id)
+#  direct_message_thread_id  (direct_message_thread_id => direct_message_threads.id)
+#  user_id                   (user_id => users.id)
 #
 require 'test_helper'
 

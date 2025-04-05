@@ -4,14 +4,14 @@
 #
 # Table name: channels
 #
-#  id          :bigint           not null, primary key
-#  realm_id    :bigint           not null
-#  name        :string
-#  description :text
+#  id           :integer          not null, primary key
 #  channel_type :string
-#  is_private  :boolean
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  description  :text
+#  is_private   :boolean
+#  name         :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  realm_id     :bigint           not null
 #
 # Indexes
 #
@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (realm_id => realms.id)
+#  realm_id  (realm_id => realms.id)
 #
 class Channel < ApplicationRecord
   belongs_to :realm

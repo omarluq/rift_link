@@ -4,7 +4,7 @@
 #
 # Table name: channels
 #
-#  id           :bigint           not null, primary key
+#  id           :integer          not null, primary key
 #  channel_type :string
 #  description  :text
 #  is_private   :boolean
@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (realm_id => realms.id)
+#  realm_id  (realm_id => realms.id)
 #
 one:
   realm: one

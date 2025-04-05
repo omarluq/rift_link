@@ -4,15 +4,15 @@
 #
 # Table name: events
 #
-#  id          :bigint           not null, primary key
-#  realm_id    :bigint           not null
-#  user_id     :bigint           not null
-#  title       :string
+#  id          :integer          not null, primary key
 #  description :text
-#  start_time  :datetime
 #  end_time    :datetime
+#  start_time  :datetime
+#  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  realm_id    :bigint           not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #
@@ -21,8 +21,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (realm_id => realms.id)
-#  fk_rails_...  (user_id => users.id)
+#  realm_id  (realm_id => realms.id)
+#  user_id   (user_id => users.id)
 #
 class Event < ApplicationRecord
   belongs_to :realm

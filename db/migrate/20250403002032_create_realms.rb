@@ -6,7 +6,6 @@ class CreateRealms < ActiveRecord::Migration[8.0]
       t.string :name
       t.text :description
       t.string :icon
-      t.string :banner
       t.references :user, null: false, foreign_key: true
       t.boolean :is_public
 

@@ -4,15 +4,15 @@
 #
 # Table name: realms
 #
-#  id          :bigint           not null, primary key
-#  name        :string
+#  id          :integer          not null, primary key
+#  banner      :string
 #  description :text
 #  icon        :string
-#  banner      :string
-#  user_id     :bigint           not null
 #  is_public   :boolean
+#  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :bigint           not null
 #
 # Indexes
 #
@@ -20,7 +20,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 class Realm < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: 'user_id'

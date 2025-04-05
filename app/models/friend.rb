@@ -4,12 +4,12 @@
 #
 # Table name: friends
 #
-#  id         :bigint           not null, primary key
-#  user_id    :bigint           not null
-#  friend_id  :bigint           not null
+#  id         :integer          not null, primary key
 #  status     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  friend_id  :bigint           not null
+#  user_id    :bigint           not null
 #
 # Indexes
 #
@@ -18,8 +18,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (friend_id => users.id)
-#  fk_rails_...  (user_id => users.id)
+#  friend_id  (friend_id => friends.id)
+#  user_id    (user_id => users.id)
 #
 class Friend < ApplicationRecord
   belongs_to :user

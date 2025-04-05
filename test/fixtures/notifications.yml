@@ -4,7 +4,7 @@
 #
 # Table name: notifications
 #
-#  id                :bigint           not null, primary key
+#  id                :integer          not null, primary key
 #  notification_type :string
 #  read              :boolean
 #  source_type       :string
@@ -19,7 +19,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (user_id => users.id)
+#  user_id  (user_id => users.id)
 #
 one:
   user: one
