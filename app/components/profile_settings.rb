@@ -103,7 +103,16 @@ module Components
         end
         RubyUI::CardContent() do
           div(class: 'flex items-center gap-4 mt-4', data: { controller: 'avatar-preview' }) do
-            Avatar(user: user_profile.user, size: :xxlarge)
+            div(class: 'relative h-20 w-20 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center overflow-hidden border-2 border-white/10', data: { 'avatar-preview-target': 'container' }) do
+              if user_profile.user.avatar.attached?
+                image_tag url_for(user_profile.user.avatar),
+                  alt: "#{user_profile.username}'s avatar",
+                  class: 'w-full h-full object-cover',
+                  data: { 'avatar-preview-target': 'preview' }
+              else
+                span(class: 'text-white text-xl font-bold') { user_profile.username ? user_profile.username[0..1].upcase : '??' }
+              end
+            end
 
             div(class: 'flex-1') do
               div(class: 'relative') do
