@@ -11,7 +11,7 @@
 #  name         :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
-#  realm_id     :bigint           not null
+#  realm_id     :integer          not null
 #
 # Indexes
 #

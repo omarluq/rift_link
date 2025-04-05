@@ -5,14 +5,13 @@
 # Table name: realms
 #
 #  id          :integer          not null, primary key
-#  banner      :string
 #  description :text
 #  icon        :string
 #  is_public   :boolean
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint           not null
+#  user_id     :integer          not null
 #
 # Indexes
 #

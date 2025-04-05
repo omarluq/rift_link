@@ -74,4 +74,6 @@ Rails.application.routes.draw do
       post 'mark_all_read'
     end
   end
+
+  mount SolidQueueDashboard::Engine, at: '/solid-queue'
 end

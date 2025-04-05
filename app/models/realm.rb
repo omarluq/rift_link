@@ -5,14 +5,13 @@
 # Table name: realms
 #
 #  id          :integer          not null, primary key
-#  banner      :string
 #  description :text
 #  icon        :string
 #  is_public   :boolean
 #  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  user_id     :bigint           not null
+#  user_id     :integer          not null
 #
 # Indexes
 #
@@ -33,6 +32,8 @@ class Realm < ApplicationRecord
 
   validates :name, presence: true
 
+  has_one_attached :banner
+
   # Check if a user is a member
   def member?(user)
     memberships.exists?(user:)
@@ -51,10 +52,5 @@ class Realm < ApplicationRecord
   # Convenience method for views
   def joined?(user = Current.user)
     member?(user)
-  end
-
-  # Method for banner URL - in real app would use ActiveStorage
-  def banner_url
-    banner if banner.present?
   end
 end

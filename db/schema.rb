@@ -40,27 +40,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "activities", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "action"
     t.string "target_name"
     t.string "target_type", null: false
-    t.bigint "target_id", null: false
+    t.integer "target_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["target_type", "target_id"], name: "index_activities_on_target"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
-  create_table "applications", force: :cascade do |t|
-    t.string "name"
-    t.string "repo_url"
-    t.string "hostname"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "channels", force: :cascade do |t|
-    t.bigint "realm_id", null: false
+    t.integer "realm_id", null: false
     t.string "name"
     t.text "description"
     t.string "channel_type"
@@ -70,18 +62,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
     t.index ["realm_id"], name: "index_channels_on_realm_id"
   end
 
-  create_table "components", force: :cascade do |t|
-    t.string "name"
-    t.string "kind"
-    t.bigint "application_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["application_id"], name: "index_components_on_application_id"
-  end
-
   create_table "direct_message_participants", force: :cascade do |t|
-    t.bigint "direct_message_thread_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "direct_message_thread_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["direct_message_thread_id"], name: "index_direct_message_participants_on_direct_message_thread_id"
@@ -94,8 +77,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "event_participants", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "event_id", null: false
+    t.integer "user_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -104,8 +87,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.bigint "realm_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "realm_id", null: false
+    t.integer "user_id", null: false
     t.string "title"
     t.text "description"
     t.datetime "start_time"
@@ -117,8 +100,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "friend_id", null: false
+    t.integer "user_id", null: false
+    t.integer "friend_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -127,11 +110,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "member_role"
     t.string "nickname"
     t.string "membershipable_type", null: false
-    t.bigint "membershipable_id", null: false
+    t.integer "membershipable_id", null: false
     t.datetime "joined_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -140,12 +123,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.text "content"
     t.string "attachment_url"
     t.boolean "is_pinned"
     t.string "messageable_type", null: false
-    t.bigint "messageable_id", null: false
+    t.integer "messageable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["messageable_type", "messageable_id"], name: "index_messages_on_messageable"
@@ -153,10 +136,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "source_type"
     t.string "source_id"
     t.string "notification_type"
+    t.string "variant", null: false
+    t.string "title", null: false
+    t.string "message", null: false
     t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -167,8 +153,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
     t.string "name"
     t.text "description"
     t.string "icon"
-    t.string "banner"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.boolean "is_public"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -176,7 +161,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "user_agent"
     t.string "ip_address"
     t.datetime "created_at", null: false
@@ -185,10 +170,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   end
 
   create_table "user_profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "username"
     t.string "display_name"
-    t.string "avatar"
     t.text "bio"
     t.string "gaming_status"
     t.datetime "created_at", null: false
@@ -209,7 +193,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_05_030141) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
   add_foreign_key "channels", "realms"
-  add_foreign_key "components", "applications"
   add_foreign_key "direct_message_participants", "direct_message_threads"
   add_foreign_key "direct_message_participants", "users"
   add_foreign_key "event_participants", "events"

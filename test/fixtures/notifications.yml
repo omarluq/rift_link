@@ -5,13 +5,16 @@
 # Table name: notifications
 #
 #  id                :integer          not null, primary key
+#  message           :string           not null
 #  notification_type :string
 #  read              :boolean
 #  source_type       :string
+#  title             :string           not null
+#  variant           :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  source_id         :string
-#  user_id           :bigint           not null
+#  user_id           :integer          not null
 #
 # Indexes
 #

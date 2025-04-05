@@ -11,8 +11,8 @@
 #  nickname            :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  membershipable_id   :bigint           not null
-#  user_id             :bigint           not null
+#  membershipable_id   :integer          not null
+#  user_id             :integer          not null
 #
 # Indexes
 #

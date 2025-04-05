@@ -5,13 +5,16 @@
 # Table name: notifications
 #
 #  id                :integer          not null, primary key
+#  message           :string           not null
 #  notification_type :string
 #  read              :boolean
 #  source_type       :string
+#  title             :string           not null
+#  variant           :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  source_id         :string
-#  user_id           :bigint           not null
+#  user_id           :integer          not null
 #
 # Indexes
 #
@@ -31,6 +34,7 @@ class Notification < ApplicationRecord
     'message_mention',
     'event_invite',
     'event_reminder',
+    'misc',
   ].freeze
 
   validates :notification_type, inclusion: { in: NOTIFICATION_TYPES }
@@ -39,6 +43,16 @@ class Notification < ApplicationRecord
   scope :recent, -> { order(created_at: :desc).limit(15) }
 
   before_validation :set_default_read_status, on: :create
+
+  after_create_commit -> {
+    broadcast_append_to(
+      "user_#{user.id}_notifications",
+      target: 'notifications',
+      html: ApplicationController.render(
+        Views::Notifications::Notification.new(notification: self)
+      )
+    )
+  }
 
   def mark_as_read
     update(read: true)

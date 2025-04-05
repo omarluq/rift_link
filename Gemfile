@@ -27,6 +27,8 @@ gem 'solid_cache'
 gem 'solid_queue'
 gem 'solid_cable'
 
+gem 'propshaft'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
@@ -60,6 +62,7 @@ group :development do
   gem 'ruby_ui', require: false, github: 'ruby-ui/ruby_ui', branch: 'main'
   gem 'annotaterb'
   gem 'letter_opener'
+  gem 'hotwire-spark'
 end
 
 group :test do
@@ -74,4 +77,4 @@ gem 'phlex-rails', '~> 2.1', :github => 'phlex-ruby/phlex-rails'
 
 gem 'tailwind_merge', '~> 1.1'
 
-gem 'kube-dsl', '~> 0.8.3'
+gem 'solid_queue_dashboard', '~> 0.2.0'

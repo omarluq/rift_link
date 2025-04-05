@@ -7,6 +7,9 @@ class CreateNotifications < ActiveRecord::Migration[8.0]
       t.string :source_type
       t.string :source_id
       t.string :notification_type
+      t.string :variant, null: false
+      t.string :title, null: false
+      t.string :message, null: false
       t.boolean :read
 
       t.timestamps

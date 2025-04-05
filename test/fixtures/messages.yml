@@ -11,8 +11,8 @@
 #  messageable_type :string           not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  messageable_id   :bigint           not null
-#  user_id          :bigint           not null
+#  messageable_id   :integer          not null
+#  user_id          :integer          not null
 #
 # Indexes
 #
