@@ -11,7 +11,7 @@ module Views
         div(class: 'container mx-auto py-8 px-4 max-w-5xl') do
           div(class: 'mb-8 text-center') do
             h1(class: 'text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-purple-400') do
-              'Account Settings'
+              'Settings'
             end
             p(class: 'text-white/60 mt-4') { 'Manage your profile, account, and preferences' }
           end
