@@ -56,6 +56,7 @@ group :development do
   gem 'colorize'
   gem 'ruby_ui', require: false, github: 'ruby-ui/ruby_ui', branch: 'main'
   gem 'annotaterb'
+  gem 'letter_opener'
 end
 
 group :test do
