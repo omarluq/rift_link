@@ -70,7 +70,7 @@ end
 
 gem 'authentication-zero', '~> 4.0'
 
-gem 'phlex-rails', '~> 2.1', :github => 'phlex-ruby/phlex-rails'
+gem 'phlex-rails', '~> 2.2', :github => 'phlex-ruby/phlex-rails'
 
 gem 'tailwind_merge', '~> 1.1'
 
